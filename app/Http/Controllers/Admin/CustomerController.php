@@ -49,8 +49,10 @@ class CustomerController extends Controller
      */
     public function create(): View
     {
+        $auth_id = Auth()->user()->id;
+        $model = ['user_id'=>$auth_id];
         return Tomato::create(
-            view: 'admin.customers.create',
+            view: 'admin.customers.create'
         );
     }
 

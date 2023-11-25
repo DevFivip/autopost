@@ -1,7 +1,7 @@
 <x-tomato-admin-container label="{{trans('tomato-admin::global.crud.edit')}} {{__('Customer')}} #{{$model->id}}">
     <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.customers.update', $model->id)}}" method="post" :default="$model">
         
-          <x-splade-select :label="__('User id')" :placeholder="__('User id')" name="user_id" remote-url="/admin/users/api" remote-root="model.data" option-label=name option-value="id" choices/>
+          {{-- <x-splade-select :label="__('User id')" :placeholder="__('User id')" name="user_id" remote-url="/admin/users/api" remote-root="model.data" option-label=name option-value="id" choices/> --}}
           <x-splade-input :label="__('Fullname')" name="fullname" type="text"  :placeholder="__('Fullname')" />
           <x-splade-input :label="__('Email')" name="email" type="email"  :placeholder="__('Email')" />
           <x-splade-input :label="__('Reddit username')" name="reddit_username" type="text"  :placeholder="__('Reddit username')" />

@@ -32,13 +32,17 @@ class AppServiceProvider extends ServiceProvider
                 ->group('Resources')
                 ->label('Customers')
                 ->route('admin.customers.index')
+                ->icon('bx bx-user'),
+            Menu::make()
+                ->group('Resources')
+                ->label('Subreddits')
+                ->route('admin.subreddits.index')
+                ->icon('bx bx-user'),
+            Menu::make()
+                ->group('Resources')
+                ->label('Assingar Subreddits')
+                ->route('admin.customer-subreddits.index')
                 ->icon('bx bx-user')
-        ,
-        Menu::make()
-        ->group('Resources')
-        ->label('Subreddits')
-        ->route('admin.subreddits.index')
-        ->icon('bx bx-reddit')
-    ]);
+        ]);
     }
 }

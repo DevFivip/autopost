@@ -63,3 +63,14 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::post('admin/subreddits/{model}', [App\Http\Controllers\Admin\SubredditController::class, 'update'])->name('subreddits.update');
     Route::delete('admin/subreddits/{model}', [App\Http\Controllers\Admin\SubredditController::class, 'destroy'])->name('subreddits.destroy');
 });
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/customer-subreddits', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'index'])->name('customer-subreddits.index');
+    Route::get('admin/customer-subreddits/api', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'api'])->name('customer-subreddits.api');
+    Route::get('admin/customer-subreddits/create', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'create'])->name('customer-subreddits.create');
+    Route::post('admin/customer-subreddits', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'store'])->name('customer-subreddits.store');
+    Route::get('admin/customer-subreddits/{model}', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'show'])->name('customer-subreddits.show');
+    Route::get('admin/customer-subreddits/{model}/edit', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'edit'])->name('customer-subreddits.edit');
+    Route::post('admin/customer-subreddits/{model}', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'update'])->name('customer-subreddits.update');
+    Route::delete('admin/customer-subreddits/{model}', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'destroy'])->name('customer-subreddits.destroy');
+});

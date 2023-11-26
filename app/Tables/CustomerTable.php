@@ -2,6 +2,7 @@
 
 namespace App\Tables;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -15,9 +16,9 @@ class CustomerTable extends AbstractTable
      *
      * @return void
      */
-    public function __construct(public Builder|null $query=null)
+    public function __construct(public Builder|null $query = null)
     {
-        if(!$query){
+        if (!$query) {
             $this->query = \App\Models\Customer::query();
         }
     }
@@ -53,7 +54,7 @@ class CustomerTable extends AbstractTable
         $table
             ->withGlobalSearch(
                 label: trans('tomato-admin::global.search'),
-                columns: ['id','email','fullName']
+                columns: ['id', 'email', 'fullName']
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
@@ -65,12 +66,14 @@ class CustomerTable extends AbstractTable
             ->column(
                 key: 'id',
                 label: __('Id'),
-                sortable: true
+                sortable: true,
+                hidden:true
             )
             ->column(
                 key: 'user_id',
                 label: __('User id'),
-                sortable: true
+                sortable: true,
+                hidden: true
             )
             ->column(
                 key: 'fullname',
@@ -86,55 +89,55 @@ class CustomerTable extends AbstractTable
                 key: 'reddit_username',
                 label: __('Reddit username'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'reddit_password',
                 label: __('Reddit password'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'reddit_clientId',
                 label: __('Reddit clientId'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'reddit_clientSecret',
                 label: __('Reddit clientSecret'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'imgur_username',
                 label: __('Imgur username'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'imgur_password',
                 label: __('Imgur password'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'imgur_clientId',
                 label: __('Imgur clientId'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'imgur_clientSecret',
                 label: __('Imgur clientSecret'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'telegram_channel',
                 label: __('Telegram channel'),
                 sortable: true,
-                hidden:true,
+                hidden: true,
             )
             ->column(
                 key: 'tags',
@@ -146,7 +149,7 @@ class CustomerTable extends AbstractTable
                 label: __('Status'),
                 sortable: true
             )
-            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
+            ->column(key: 'actions', label: trans('tomato-admin::global.crud.actions'))
             ->export()
             ->paginate(10);
     }

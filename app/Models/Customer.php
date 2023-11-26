@@ -30,6 +30,7 @@ class Customer extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'fullname', 'email', 'reddit_username', 'reddit_password', 'reddit_clientId', 'reddit_clientSecret', 'imgur_username', 'imgur_password', 'imgur_clientId', 'imgur_clientSecret', 'telegram_channel', 'tags', 'status', 'created_at', 'updated_at'];
+    protected $casts = ['status' => 'boolean'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

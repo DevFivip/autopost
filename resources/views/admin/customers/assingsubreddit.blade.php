@@ -1,16 +1,30 @@
 <x-tomato-admin-layout>
     <x-slot:header>
-        {{ __('Customer') }}
+        {{ __('Customer Assing Subreddits') }}
     </x-slot:header>
     <x-slot:buttons>
-        <x-tomato-admin-button :modal="true" :href="route('admin.customers.create')" type="link">
+        {{-- <x-tomato-admin-button :modal="true" :href="route('admin.customers.create')" type="link">
             {{ trans('tomato-admin::global.crud.create-new') }} {{ __('Customer') }}
+        </x-tomato-admin-button> --}}
+        <x-tomato-admin-button  :href="route('admin.customers.index')" type="link">
+        {{ __('Back') }}
         </x-tomato-admin-button>
     </x-slot:buttons>
 
     <div class="pb-12">
         <div class="mx-auto">
-            <x-splade-table :for="$table" striped>
+            <x-splade-form :default="['name' => 'Laravel Splade']">
+                <input v-model="form.name" />
+                <x-splade-group name="subreddit" label="Pick one or more interests">
+                    <x-splade-checkbox name="subreddit[]" :show-errors="false" value="laravel" label="Laravel" />
+                    <x-splade-checkbox name="subreddit[]" :show-errors="false" value="tailwindcss" label="Tailwind" />
+                </x-splade-group>
+            </x-splade-form>
+            {{-- <x-splade-group name="tags" label="Pick one or more interests">
+                <x-splade-checkbox name="tags[]" :show-errors="false" value="laravel" label="Laravel" />
+                <x-splade-checkbox name="tags[]" :show-errors="false" value="tailwindcss" label="Tailwind" />
+            </x-splade-group> --}}
+            {{-- <x-splade-table :for="$table" striped>
                 <x-splade-cell email>
                     <x-tomato-admin-row table type="email" :value="$item->email" />
                 </x-splade-cell>
@@ -45,7 +59,7 @@
                         </x-tomato-admin-button>
                     </div>
                 </x-splade-cell>
-            </x-splade-table>
+            </x-splade-table> --}}
         </div>
     </div>
 </x-tomato-admin-layout>

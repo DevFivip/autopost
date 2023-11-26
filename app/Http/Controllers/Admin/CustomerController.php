@@ -117,6 +117,18 @@ class CustomerController extends Controller
     }
 
     /**
+     * @param \App\Models\Customer $model
+     * @return View
+     */
+    public function assingsubreddit(\App\Models\Customer $model): View
+    {
+        return Tomato::get(
+            model: $model,
+            view: 'admin.customers.assingsubreddit',
+        );
+    }
+
+    /**
      * @param Request $request
      * @param \App\Models\Customer $model
      * @return RedirectResponse|JsonResponse
@@ -127,7 +139,7 @@ class CustomerController extends Controller
             request: $request,
             model: $model,
             validation: [
-                            'user_id' => 'sometimes|exists:users,id',
+            'user_id' => 'sometimes|exists:users,id',
             'fullname' => 'sometimes|max:255|string',
             'email' => 'nullable|max:255|string|email',
             'reddit_username' => 'nullable|max:255|string',

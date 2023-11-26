@@ -12,7 +12,7 @@
           
           <x-splade-input :label="__('Imgur clientId')" name="imgur_clientId" type="text"  :placeholder="__('Imgur clientId')" />
           <x-splade-input :label="__('Imgur clientSecret')" name="imgur_clientSecret" type="text"  :placeholder="__('Imgur clientSecret')" />
-          <x-tomato-admin-tel :label="__('Telegram channel')" :placeholder="__('Telegram channel')" type='tel' name="telegram_channel" />
+          <x-splade-input :label="__('Telegram channel')" :placeholder="__('Telegram channel')" type='text' name="telegram_channel" />
           <x-splade-input :label="__('Tags')" name="tags" type="text"  :placeholder="__('Tags')" />
           <x-splade-checkbox :label="__('Status')" name="status" label="Status" />
 

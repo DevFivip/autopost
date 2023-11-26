@@ -27,12 +27,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        TomatoMenu::register(
+        TomatoMenu::register([
             Menu::make()
                 ->group('Resources')
                 ->label('Customers')
                 ->route('admin.customers.index')
                 ->icon('bx bx-user')
-        );
+        ,
+        Menu::make()
+        ->group('Resources')
+        ->label('Subreddits')
+        ->route('admin.subreddits.index')
+        ->icon('bx bx-reddit')
+    ]);
     }
 }

@@ -77,7 +77,7 @@ class CustomerController extends Controller
             'imgur_password' => 'nullable|max:255|confirmed|min:6',
             'imgur_clientId' => 'nullable|max:255|string',
             'imgur_clientSecret' => 'nullable|max:255|string',
-            'telegram_channel' => 'nullable|max:255|min:12',
+            'telegram_channel' => 'nullable|max:255|min:2',
             'tags' => 'nullable|max:255|string',
             'status' => 'required'
             ],
@@ -138,7 +138,7 @@ class CustomerController extends Controller
             'imgur_password' => 'nullable|max:255|confirmed|min:6',
             'imgur_clientId' => 'nullable|max:255|string',
             'imgur_clientSecret' => 'nullable|max:255|string',
-            'telegram_channel' => 'nullable|max:255|min:12',
+            'telegram_channel' => 'nullable|max:255|min:2',
             'tags' => 'nullable|max:255|string',
             'status' => 'sometimes'
             ],

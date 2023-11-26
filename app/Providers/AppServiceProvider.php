@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
                 ->icon('bx bx-user'),
             Menu::make()
                 ->group('Resources')
-                ->label('Assingar Subreddits')
+                ->label('Assign Subreddits to Customers')
                 ->route('admin.customer-subreddits.index')
                 ->icon('bx bx-user')
         ]);

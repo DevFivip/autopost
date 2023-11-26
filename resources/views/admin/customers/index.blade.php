@@ -22,9 +22,9 @@
                 </x-splade-cell>
                 <x-splade-cell actions>
                     <div class="flex justify-start">
-                        <x-tomato-admin-button success type="icon"
-                            title="{{ trans('tomato-admin::global.crud.view') }}" modal :href="route('admin.customer-subreddits.index', ['filter[global]'=>$item->fullname])">
-                            <x-heroicon-s-eye class="h-6 w-6" />
+                        <x-tomato-admin-button type="icon"
+                            title="{{ trans('tomato-admin::global.crud.view') }}" :href="route('admin.customer-subreddits.index', ['filter[global]'=>$item->fullname])">
+                            <x-bi-reddit style="height: 25px: width:25px; margin-top:4px"/>
                         </x-tomato-admin-button>
                         <x-tomato-admin-button success type="icon"
                             title="{{ trans('tomato-admin::global.crud.view') }}" modal :href="route('admin.customers.show', $item->id)">

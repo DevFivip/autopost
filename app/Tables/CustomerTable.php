@@ -53,7 +53,7 @@ class CustomerTable extends AbstractTable
         $table
             ->withGlobalSearch(
                 label: trans('tomato-admin::global.search'),
-                columns: ['id','email',]
+                columns: ['id','email','fullName']
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
@@ -75,7 +75,7 @@ class CustomerTable extends AbstractTable
             ->column(
                 key: 'fullname',
                 label: __('Fullname'),
-                sortable: true
+                sortable: true,
             )
             ->column(
                 key: 'email',
@@ -85,47 +85,56 @@ class CustomerTable extends AbstractTable
             ->column(
                 key: 'reddit_username',
                 label: __('Reddit username'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'reddit_password',
                 label: __('Reddit password'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'reddit_clientId',
                 label: __('Reddit clientId'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'reddit_clientSecret',
                 label: __('Reddit clientSecret'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'imgur_username',
                 label: __('Imgur username'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'imgur_password',
                 label: __('Imgur password'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'imgur_clientId',
                 label: __('Imgur clientId'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'imgur_clientSecret',
                 label: __('Imgur clientSecret'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'telegram_channel',
                 label: __('Telegram channel'),
-                sortable: true
+                sortable: true,
+                hidden:true,
             )
             ->column(
                 key: 'tags',

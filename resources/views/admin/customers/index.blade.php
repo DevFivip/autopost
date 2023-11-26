@@ -23,7 +23,7 @@
                 <x-splade-cell actions>
                     <div class="flex justify-start">
                         <x-tomato-admin-button success type="icon"
-                            title="{{ trans('tomato-admin::global.crud.view') }}" modal :href="route('admin.customers.assingsubreddit', $item->id)">
+                            title="{{ trans('tomato-admin::global.crud.view') }}" modal :href="route('admin.customer-subreddits.index', ['filter[global]'=>$item->fullname])">
                             <x-heroicon-s-eye class="h-6 w-6" />
                         </x-tomato-admin-button>
                         <x-tomato-admin-button success type="icon"

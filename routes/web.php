@@ -87,8 +87,13 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
 });
 
 Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/search/images', [App\Http\Controllers\Admin\ImageController::class, 'search'])->name('images.search');
+});
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/images', [App\Http\Controllers\Admin\ImageController::class, 'index'])->name('images.index');
     Route::get('admin/images/api', [App\Http\Controllers\Admin\ImageController::class, 'api'])->name('images.api');
+    Route::post('admin/images/api', [App\Http\Controllers\Admin\ImageController::class, 'api'])->name('images.api');
     Route::get('admin/images/create', [App\Http\Controllers\Admin\ImageController::class, 'create'])->name('images.create');
     Route::post('admin/images', [App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
     Route::get('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'show'])->name('images.show');
@@ -106,4 +111,15 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::get('admin/telegram-channels/{model}/edit', [App\Http\Controllers\Admin\TelegramChannelController::class, 'edit'])->name('telegram-channels.edit');
     Route::post('admin/telegram-channels/{model}', [App\Http\Controllers\Admin\TelegramChannelController::class, 'update'])->name('telegram-channels.update');
     Route::delete('admin/telegram-channels/{model}', [App\Http\Controllers\Admin\TelegramChannelController::class, 'destroy'])->name('telegram-channels.destroy');
+});
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/posts', [App\Http\Controllers\Admin\PostController::class, 'index'])->name('posts.index');
+    Route::get('admin/posts/api', [App\Http\Controllers\Admin\PostController::class, 'api'])->name('posts.api');
+    Route::get('admin/posts/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->name('posts.create');
+    Route::post('admin/posts', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('posts.store');
+    Route::get('admin/posts/{model}', [App\Http\Controllers\Admin\PostController::class, 'show'])->name('posts.show');
+    Route::get('admin/posts/{model}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('posts.edit');
+    Route::post('admin/posts/{model}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('posts.update');
+    Route::delete('admin/posts/{model}', [App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('posts.destroy');
 });

@@ -22,7 +22,7 @@ class Event extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'customer_id', 'subreddit_id', 'status', 'posted_at', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'customer_id', 'subreddit_id','post_id', 'status', 'posted_at', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -46,5 +46,13 @@ class Event extends Model
     public function customer()
     {
         return $this->belongsTo('App\Models\Customer');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function post()
+    {
+        return $this->belongsTo('App\Models\Post');
     }
 }

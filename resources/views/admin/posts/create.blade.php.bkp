@@ -1,0 +1,55 @@
+<x-tomato-admin-container label="{{ trans('tomato-admin::global.crud.create') }} {{ __('Post') }}">
+    <x-splade-form class="flex flex-col space-y-4" action="{{ route('admin.posts.store') }}" method="post"
+        :default="['user_id' => auth()->user()->id, 'status' => true]">
+
+
+
+        <div class="flex flex-wrap gap-2">
+            {{-- <x-splade-radios name="notification_channel" label="Preferred notification channel" :options="$channels" /> --}}
+            <x-splade-radio name="theme" value="dark" label="Dark theme" :show-errors="true" />
+            <x-splade-radio name="theme" value="light" label="Light theme" :show-errors="true" />
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+            <x-splade-select class="w-64" :label="__('Customer')" :placeholder="__('Customer')" name="customer_id"
+                remote-url="/admin/customers/api" remote-root="model.data" option-label=name option-value="id"
+                choices />
+        </div>
+
+        <div class="flex">
+            <div class="flex-none w-14 h-14">
+                <x-splade-select :label="__('Subreddit id')" :placeholder="__('Subreddit id')" name="subreddit_id"
+                    remote-url="/admin/subreddits/api" remote-root="model.data" option-label=name option-value="id"
+                    choices />
+            </div>
+            <div class="flex-initial w-64 ...">
+                <x-splade-select :label="__('Subreddit id')" :placeholder="__('Subreddit id')" name="subreddit_id"
+                    remote-url="/admin/subreddits/api" remote-root="model.data" option-label=name option-value="id"
+                    choices />
+            </div>
+            <div class="flex-initial w-32 ...">
+                03
+            </div>
+        </div>
+
+
+
+
+        <x-splade-select :label="__('Subreddit id')" :placeholder="__('Subreddit id')" name="subreddit_id" remote-url="/admin/subreddits/api"
+            remote-root="model.data" option-label=name option-value="id" choices />
+        <x-splade-select :label="__('Telegram channel id')" :placeholder="__('Telegram channel id')" name="telegram_channel_id"
+            remote-url="/admin/telegram_channels/api" remote-root="model.data" option-label=name option-value="id"
+            choices />
+        <x-splade-select :label="__('Post type id')" :placeholder="__('Post type id')" name="post_type_id" remote-url="/admin/post_types/api"
+            remote-root="model.data" option-label=name option-value="id" choices />
+        <x-splade-input :label="__('Title')" name="title" type="text" :placeholder="__('Title')" />
+        <x-splade-input :label="__('Description')" name="description" type="text" :placeholder="__('Description')" />
+        <x-splade-input :label="__('Link')" name="link" type="text" :placeholder="__('Link')" />
+        <x-splade-input :label="__('Local media file')" name="local_media_file" type="text" :placeholder="__('Local media file')" />
+
+        <div class="flex justify-start gap-2 pt-3">
+            <x-tomato-admin-submit label="{{ __('Save') }}" :spinner="true" />
+            <x-tomato-admin-button secondary :href="route('admin.posts.index')" label="{{ __('Cancel') }}" />
+        </div>
+    </x-splade-form>
+</x-tomato-admin-container>

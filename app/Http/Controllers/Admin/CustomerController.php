@@ -43,7 +43,6 @@ class CustomerController extends Controller
     public function api(Request $request): JsonResponse
     {
         $query = $request->all();
-        error_log(json_encode($query));
         return Tomato::json(
             request: $request,
             model: \App\Models\Customer::class,

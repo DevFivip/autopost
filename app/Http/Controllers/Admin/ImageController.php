@@ -37,12 +37,28 @@ class ImageController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function api(Request $request): JsonResponse
+    public function api2(Request $request): JsonResponse
     {
+        $query = $request->all();
+        error_log(json_encode($query));
         return Tomato::json(
             request: $request,
             model: \App\Models\Image::class,
+            query: Image::query()->where($query)->each(function ($i) {
+                return $i->getFirstMedia()->getUrl('thumb');
+            }),
         );
+    }
+    public function api(Request $request): JsonResponse
+    {
+        $query = $request->all();
+        error_log(json_encode($query));
+        $imgs = Image::where($query)->get();
+        $imgs->each(function ($i) {
+            $i->thum = $i->getFirstMedia('medias')->getUrl('preview');
+            return $i;
+        });
+        return response()->json($imgs);
     }
 
     /**
@@ -70,11 +86,11 @@ class ImageController extends Controller
             $mediaFile = new Image();
             $mediaFile->customer_id = $request->input('customer_id');
             $mediaFile->name = $archivo->getClientOriginalName();
+            $mediaFile->tags = " ";
             $mediaFile->save();
             $mediaFile->addMedia($archivo)->toMediaCollection('medias');
         }
-        return to_route('admin.images.index',['message'=>'Image updated successfully']);
-     
+        return to_route('admin.images.index', ['message' => 'Image updated successfully']);
     }
 
     /**
@@ -112,18 +128,18 @@ class ImageController extends Controller
             request: $request,
             model: $model,
             validation: [
-                            'customer_id' => 'sometimes|exists:customers,id',
-            'name' => 'sometimes|max:255|string'
+                'customer_id' => 'sometimes|exists:customers,id',
+                'name' => 'sometimes|max:255|string'
             ],
             message: __('Image updated successfully'),
             redirect: 'admin.images.index',
         );
 
-         if($response instanceof JsonResponse){
-             return $response;
-         }
+        if ($response instanceof JsonResponse) {
+            return $response;
+        }
 
-         return $response->redirect;
+        return $response->redirect;
     }
 
     /**
@@ -138,10 +154,21 @@ class ImageController extends Controller
             redirect: 'admin.images.index',
         );
 
-        if($response instanceof JsonResponse){
+        if ($response instanceof JsonResponse) {
             return $response;
         }
 
         return $response->redirect;
+    }
+
+
+    /**
+     * @param \App\Models\Image $model
+     * @return View
+     */
+    public function search()
+    {
+        return view('admin.images.modal');
+        // return response()->json(["msg"=>"hola"]);
     }
 }

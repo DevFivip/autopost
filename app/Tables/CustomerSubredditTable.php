@@ -102,6 +102,11 @@ class CustomerSubredditTable extends AbstractTable
                 sortable: true,
                 hidden:true
             )
+            ->column(
+                key: 'verification_status',
+                label: __('Verification Status'),
+                sortable: true
+            )
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->export()
             ->selectFilter(

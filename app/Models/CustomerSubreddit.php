@@ -15,7 +15,7 @@ class CustomerSubreddit extends Model
     /**
      * @var array
      */
-    protected $fillable = ['customer_id', 'subreddit_id', 'user_id'];
+    protected $fillable = ['customer_id', 'subreddit_id', 'user_id', 'verification_status'];
     public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

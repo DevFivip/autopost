@@ -66,7 +66,8 @@ class CustomerSubredditController extends Controller
             model: \App\Models\CustomerSubreddit::class,
             validation: [
                 'customer_id' => 'required|exists:customers,id',
-            'subreddit_id' => 'required|exists:subreddits,id'
+                'subreddit_id' => 'required|exists:subreddits,id',
+                'verification_status' => 'required',
             ],
             message: __('CustomerSubreddit updated successfully'),
             redirect: 'admin.customer-subreddits.index',
@@ -115,7 +116,8 @@ class CustomerSubredditController extends Controller
             model: $model,
             validation: [
                 'customer_id' => 'sometimes|exists:customers,id',
-            'subreddit_id' => 'sometimes|exists:subreddits,id'
+                'subreddit_id' => 'sometimes|exists:subreddits,id',
+                'verification_status' => 'required',
             ],
             message: __('CustomerSubreddit updated successfully'),
             redirect: 'admin.customer-subreddits.index',

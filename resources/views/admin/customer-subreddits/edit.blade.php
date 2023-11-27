@@ -7,6 +7,13 @@
         <x-splade-select :label="__('Subreddit id')" :placeholder="__('Subreddit id')" name="subreddit_id" remote-url="/admin/subreddits/api"
             remote-root="data" option-label=name option-value="id" choices />
 
+        <x-splade-select :label="__('Verification Status')" name="verification_status" placeholder="Verification Status" choices>
+            <option value="1">Unkown</option>
+            <option value="2">Baned</option>
+            <option value="3">Pending</option>
+            <option value="4">Verified</option>
+        </x-splade-select>
+
         <div class="flex justify-start gap-2 pt-3">
             <x-tomato-admin-submit label="{{ __('Save') }}" :spinner="true" />
             <x-tomato-admin-button danger :href="route('admin.customer-subreddits.destroy', $model->id)"

@@ -27,6 +27,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        TomatoMenu::groups([
+            __('ALC') => true,
+            __('Settings') => false,
+            __('Resources') => true,
+        ]);
+
+        // $user = auth()->user();
+        // dd($user);
         TomatoMenu::register([
             Menu::make()
                 ->group('Resources')
@@ -42,7 +50,12 @@ class AppServiceProvider extends ServiceProvider
                 ->group('Resources')
                 ->label('Assign Subreddits to Customers')
                 ->route('admin.customer-subreddits.index')
-                ->icon('bx bx-user')
+                ->icon('bx bx-user'),
+            Menu::make()
+                ->group('Resources')
+                ->label('Upcoming Posts')
+                ->route('admin.events.index')
+                ->icon('bx bx-calendar'),
         ]);
     }
 }

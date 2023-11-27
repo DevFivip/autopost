@@ -3,23 +3,24 @@
 namespace App\Tables;
 
 use App\Models\Customer;
+use App\Models\Subreddit;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 use Illuminate\Database\Eloquent\Builder;
 
-class CustomerSubredditTable extends AbstractTable
+class EventTable extends AbstractTable
 {
     /**
      * Create a new instance.
      *
      * @return void
      */
-    public function __construct(public Builder|null $query=null)
+    public function __construct(public Builder|null $query = null)
     {
-        if(!$query){
-            $this->query = \App\Models\CustomerSubreddit::query();
+        if (!$query) {
+            $this->query = \App\Models\Event::query();
         }
     }
 
@@ -54,36 +55,53 @@ class CustomerSubredditTable extends AbstractTable
         $table
             ->withGlobalSearch(
                 label: trans('tomato-admin::global.search'),
-                columns: ["customer.fullname",'subreddit.name',"subreddit.tags"]
+                columns: ['id',]
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
-                each: fn (\App\Models\CustomerSubreddit $model) => $model->delete(),
-                after: fn () => Toast::danger(__('CustomerSubreddit Has Been Deleted'))->autoDismiss(2),
+                each: fn (\App\Models\Event $model) => $model->delete(),
+                after: fn () => Toast::danger(__('Event Has Been Deleted'))->autoDismiss(2),
                 confirm: true
             )
             ->defaultSort('id', 'desc')
             ->column(
+                key: 'id',
+                label: __('Id'),
+                sortable: true,
+                hidden: true,
+            )
+            ->column(
                 key: 'user_id',
                 label: __('User id'),
                 sortable: true,
-                hidden:true
+                hidden: true,
             )
             ->column(
                 key: 'customer_id',
                 label: __('Customer id'),
                 sortable: true,
-                hidden:true
+                hidden: true,
+            )
+            ->column(
+                key: 'subreddit_id',
+                label: __('Subreddit id'),
+                sortable: true,
+                hidden: true,
+            )
+            ->column(
+                key: 'posted_at',
+                label: __('Scheduled Date and Time'),
+                sortable: true
             )
             ->column(
                 key: 'user.name',
                 label: __('User'),
                 sortable: true,
-                hidden:true
+                hidden: true
             )
             ->column(
                 key: 'customer.fullname',
-                label: __('Customer Name'),
+                label: __('Customer'),
                 sortable: true
             )
             ->column(
@@ -92,24 +110,32 @@ class CustomerSubredditTable extends AbstractTable
                 sortable: true
             )
             ->column(
-                key: 'subreddit.tags',
-                label: __('Subreddit Tags'),
+                key: 'status',
+                label: __('Status'),
                 sortable: true
             )
-            ->column(
-                key: 'subreddit_id',
-                label: __('Subreddit id'),
-                sortable: true,
-                hidden:true
-            )
-            ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
+            ->column(key: 'actions', label: trans('tomato-admin::global.crud.actions'))
             ->export()
             ->selectFilter(
                 key: 'customer_id',
-                options: Customer::all()->pluck('fullname','id')->toArray(),
+                options: Customer::myCustomers()->pluck('fullname', 'id')->toArray(),
                 label: 'Customer',
                 noFilterOption: true,
                 noFilterOptionLabel: 'All Customers'
+            )
+            ->selectFilter(
+                key: 'subreddit_id',
+                options: Subreddit::all()->pluck('name', 'id')->toArray(),
+                label: 'Subreddits',
+                noFilterOption: true,
+                noFilterOptionLabel: 'All Subreddits'
+            )
+            ->selectFilter(
+                key: 'status',
+                options: ['Failed','Pending','Completed'],
+                label: 'Status',
+                noFilterOption: true,
+                noFilterOptionLabel: 'All Status'
             )
             ->paginate(10);
     }

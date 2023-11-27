@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -24,11 +25,14 @@ class CustomerController extends Controller
      */
     public function index(Request $request): View|JsonResponse
     {
+        $query = ['user_id' => auth()->user()->id];
+
         return Tomato::index(
             request: $request,
             model: $this->model,
             view: 'admin.customers.index',
-            table: \App\Tables\CustomerTable::class
+            table: \App\Tables\CustomerTable::class,
+            query:Customer::query()->where($query),
         );
     }
 
@@ -38,9 +42,12 @@ class CustomerController extends Controller
      */
     public function api(Request $request): JsonResponse
     {
+        $query = $request->all();
+        error_log(json_encode($query));
         return Tomato::json(
             request: $request,
             model: \App\Models\Customer::class,
+            query:Customer::query()->where($query),
         );
     }
 

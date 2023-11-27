@@ -15,7 +15,7 @@ class CustomerSubreddit extends Model
     /**
      * @var array
      */
-    protected $fillable = ['customer_id', 'subreddit_id'];
+    protected $fillable = ['customer_id', 'subreddit_id', 'user_id'];
     public $timestamps = false;
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -31,5 +31,13 @@ class CustomerSubreddit extends Model
     public function customer()
     {
         return $this->belongsTo('App\Models\Customer');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 }

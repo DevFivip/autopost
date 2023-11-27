@@ -74,3 +74,14 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::post('admin/customer-subreddits/{model}', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'update'])->name('customer-subreddits.update');
     Route::delete('admin/customer-subreddits/{model}', [App\Http\Controllers\Admin\CustomerSubredditController::class, 'destroy'])->name('customer-subreddits.destroy');
 });
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/events', [App\Http\Controllers\Admin\EventController::class, 'index'])->name('events.index');
+    Route::get('admin/events/api', [App\Http\Controllers\Admin\EventController::class, 'api'])->name('events.api');
+    Route::get('admin/events/create', [App\Http\Controllers\Admin\EventController::class, 'create'])->name('events.create');
+    Route::post('admin/events', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');
+    Route::get('admin/events/{model}', [App\Http\Controllers\Admin\EventController::class, 'show'])->name('events.show');
+    Route::get('admin/events/{model}/edit', [App\Http\Controllers\Admin\EventController::class, 'edit'])->name('events.edit');
+    Route::post('admin/events/{model}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
+    Route::delete('admin/events/{model}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
+});

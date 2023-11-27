@@ -39,4 +39,8 @@ class Customer extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    public static function myCustomers()
+    {
+       return self::where('user_id',auth()->user()->id)->get();
+    }
 }

@@ -85,3 +85,14 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::post('admin/events/{model}', [App\Http\Controllers\Admin\EventController::class, 'update'])->name('events.update');
     Route::delete('admin/events/{model}', [App\Http\Controllers\Admin\EventController::class, 'destroy'])->name('events.destroy');
 });
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/images', [App\Http\Controllers\Admin\ImageController::class, 'index'])->name('images.index');
+    Route::get('admin/images/api', [App\Http\Controllers\Admin\ImageController::class, 'api'])->name('images.api');
+    Route::get('admin/images/create', [App\Http\Controllers\Admin\ImageController::class, 'create'])->name('images.create');
+    Route::post('admin/images', [App\Http\Controllers\Admin\ImageController::class, 'store'])->name('images.store');
+    Route::get('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'show'])->name('images.show');
+    Route::get('admin/images/{model}/edit', [App\Http\Controllers\Admin\ImageController::class, 'edit'])->name('images.edit');
+    Route::post('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'update'])->name('images.update');
+    Route::delete('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'destroy'])->name('images.destroy');
+});

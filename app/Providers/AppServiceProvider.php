@@ -56,6 +56,11 @@ class AppServiceProvider extends ServiceProvider
                 ->label('Upcoming Posts')
                 ->route('admin.events.index')
                 ->icon('bx bx-calendar'),
+            Menu::make()
+                ->group('Resources')
+                ->label('Content Library')
+                ->route('admin.images.index')
+                ->icon('bx bx-images'),
         ]);
     }
 }

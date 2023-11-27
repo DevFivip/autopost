@@ -61,6 +61,11 @@ class AppServiceProvider extends ServiceProvider
                 ->label('Content Library')
                 ->route('admin.images.index')
                 ->icon('bx bx-images'),
+            Menu::make()
+                ->group('Resources')
+                ->label('Telegram Channels')
+                ->route('admin.telegram-channels.index')
+                ->icon('bx bx-telegram'),
         ]);
     }
 }

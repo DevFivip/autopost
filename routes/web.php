@@ -96,3 +96,14 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::post('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'update'])->name('images.update');
     Route::delete('admin/images/{model}', [App\Http\Controllers\Admin\ImageController::class, 'destroy'])->name('images.destroy');
 });
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/telegram-channels', [App\Http\Controllers\Admin\TelegramChannelController::class, 'index'])->name('telegram-channels.index');
+    Route::get('admin/telegram-channels/api', [App\Http\Controllers\Admin\TelegramChannelController::class, 'api'])->name('telegram-channels.api');
+    Route::get('admin/telegram-channels/create', [App\Http\Controllers\Admin\TelegramChannelController::class, 'create'])->name('telegram-channels.create');
+    Route::post('admin/telegram-channels', [App\Http\Controllers\Admin\TelegramChannelController::class, 'store'])->name('telegram-channels.store');
+    Route::get('admin/telegram-channels/{model}', [App\Http\Controllers\Admin\TelegramChannelController::class, 'show'])->name('telegram-channels.show');
+    Route::get('admin/telegram-channels/{model}/edit', [App\Http\Controllers\Admin\TelegramChannelController::class, 'edit'])->name('telegram-channels.edit');
+    Route::post('admin/telegram-channels/{model}', [App\Http\Controllers\Admin\TelegramChannelController::class, 'update'])->name('telegram-channels.update');
+    Route::delete('admin/telegram-channels/{model}', [App\Http\Controllers\Admin\TelegramChannelController::class, 'destroy'])->name('telegram-channels.destroy');
+});

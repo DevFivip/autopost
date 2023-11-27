@@ -28,6 +28,8 @@ return new class extends Migration
         Schema::create('telegram_channels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('tags');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('customer_id')->constrained('customers');
             $table->integer('status');
             $table->timestamps();

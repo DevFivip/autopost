@@ -91,6 +91,11 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
 });
 
 Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+    Route::get('admin/utils/get', [App\Http\Controllers\Admin\UtilController::class, 'util'])->name('utils.get');
+    Route::get('admin/utils/getSubredditsAssigned', [App\Http\Controllers\Admin\UtilController::class, 'getSubredditsAssigned'])->name('utils.getSubredditsAssigned');
+});
+
+Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/images', [App\Http\Controllers\Admin\ImageController::class, 'index'])->name('images.index');
     Route::get('admin/images/api', [App\Http\Controllers\Admin\ImageController::class, 'api'])->name('images.api');
     Route::post('admin/images/api', [App\Http\Controllers\Admin\ImageController::class, 'api'])->name('images.api');

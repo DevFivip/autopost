@@ -81,8 +81,8 @@
                             <div class="flex flex-wrap gap-2">
                                 <div v-for="(item,index) in response" class="relative w-1/4 p-2">
                                     <label class="absolute top-0 left-0 cursor-pointer">
-                                        <input type="radio" :id="'img_' + index" name="mediafile[]"
-                                            :value="item.id" v-model="form.mediafile">
+                                        <input type="radio" :id="'img_' + index" name="local_media_file[]"
+                                            :value="item.id" v-model="form.local_media_file">
                                         <a target="_blank" :href="item.media[0].original_url" class="">Ver</a>
                                     </label>
                                     <label :for="'img_' + index">

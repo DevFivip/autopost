@@ -38,9 +38,9 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->string('link');
-            $table->string('local_media_file');
+            $table->string('description')->nullable();
+            $table->string('link')->nullable();
+            $table->string('local_media_file')->nullable();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('subreddit_id')->nullable()->constrained('subreddits');

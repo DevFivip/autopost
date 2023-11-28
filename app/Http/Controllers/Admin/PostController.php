@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -60,29 +61,52 @@ class PostController extends Controller
      */
     public function store(Request $request): RedirectResponse|JsonResponse
     {
-        $response = Tomato::store(
-            request: $request,
-            model: \App\Models\Post::class,
-            validation: [
-                            'user_id' => 'required|exists:users,id',
+
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
             'customer_id' => 'required|exists:customers,id',
             'subreddit_id' => 'nullable|exists:subreddits,id',
             'telegram_channel_id' => 'nullable|exists:telegram_channels,id',
             'post_type_id' => 'required|exists:post_types,id',
             'title' => 'required|max:255|string',
-            'description' => 'required|max:255|string',
-            'link' => 'required|max:255|string',
-            'local_media_file' => 'required|max:255|string'
-            ],
-            message: __('Post updated successfully'),
-            redirect: 'admin.posts.index',
-        );
+            'description' => 'nullable|max:255|string',
+            'link' => 'nullable|max:255|string',
+            'local_media_file' => 'nullable|max:255|string'
+        ]);
 
-        if($response instanceof JsonResponse){
-            return $response;
+        $data = $request->all();
+
+        foreach ($data['submition_schedule'] as $schedule) {
+
+            $post = Post::create([
+                'title' => $data['title'],
+                'description' => $data['description'] ?? null,
+                'link' => $data['link'] ?? null,
+                'local_media_file' => $data['local_media_file'] ?? null,
+                'user_id' => $data['user_id'],
+                'customer_id' => $data['customer_id'],
+                'subreddit_id' => $schedule['subreddit_id'] ?? null,
+                'telegram_channel_id' => $schedule['telegram_channel_id'] ?? null,
+                'post_type_id' => $data['post_type_id'],
+                'posted_at' => $schedule['posted_at'],
+            ]);
+
+            // if(!!$schedule['subreddit_id']){
+
+            // }
+
+
         }
+        // return response()->json($data);
 
-        return $response->redirect;
+        return to_route('admin.posts.index');
+
+
+        // if($response instanceof JsonResponse){
+        //     return $response;
+        // }
+
+        // return $response->redirect;
     }
 
     /**
@@ -120,25 +144,25 @@ class PostController extends Controller
             request: $request,
             model: $model,
             validation: [
-                            'user_id' => 'sometimes|exists:users,id',
-            'customer_id' => 'sometimes|exists:customers,id',
-            'subreddit_id' => 'nullable|exists:subreddits,id',
-            'telegram_channel_id' => 'nullable|exists:telegram_channels,id',
-            'post_type_id' => 'sometimes|exists:post_types,id',
-            'title' => 'sometimes|max:255|string',
-            'description' => 'sometimes|max:255|string',
-            'link' => 'sometimes|max:255|string',
-            'local_media_file' => 'sometimes|max:255|string'
+                'user_id' => 'sometimes|exists:users,id',
+                'customer_id' => 'sometimes|exists:customers,id',
+                'subreddit_id' => 'nullable|exists:subreddits,id',
+                'telegram_channel_id' => 'nullable|exists:telegram_channels,id',
+                'post_type_id' => 'sometimes|exists:post_types,id',
+                'title' => 'sometimes|max:255|string',
+                'description' => 'sometimes|max:255|string',
+                'link' => 'sometimes|max:255|string',
+                'local_media_file' => 'sometimes|max:255|string'
             ],
             message: __('Post updated successfully'),
             redirect: 'admin.posts.index',
         );
 
-         if($response instanceof JsonResponse){
-             return $response;
-         }
+        if ($response instanceof JsonResponse) {
+            return $response;
+        }
 
-         return $response->redirect;
+        return $response->redirect;
     }
 
     /**
@@ -153,7 +177,7 @@ class PostController extends Controller
             redirect: 'admin.posts.index',
         );
 
-        if($response instanceof JsonResponse){
+        if ($response instanceof JsonResponse) {
             return $response;
         }
 

@@ -12,6 +12,12 @@
         <div class="mx-auto">
             <x-splade-table :for="$table" striped>
                 
+                <x-splade-cell local_media_file>
+                    @if(!!$item->local_media_file)
+                    <img src="{{ App\Models\Image::find($item->local_media_file)->getFirstMedia('medias')->getUrl('preview') }}" alt=""
+                    style="max-height: 30vh;" class="object-cover mr-2">
+                    @endif
+                </x-splade-cell>
                 <x-splade-cell actions>
                     <div class="flex justify-start">
                         <x-tomato-admin-button success type="icon" title="{{trans('tomato-admin::global.crud.view')}}" modal :href="route('admin.posts.show', $item->id)">

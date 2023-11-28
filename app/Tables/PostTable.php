@@ -2,6 +2,7 @@
 
 namespace App\Tables;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -53,7 +54,7 @@ class PostTable extends AbstractTable
         $table
             ->withGlobalSearch(
                 label: trans('tomato-admin::global.search'),
-                columns: ['id',]
+                columns: ['id']
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),
@@ -63,33 +64,8 @@ class PostTable extends AbstractTable
             )
             ->defaultSort('id', 'desc')
             ->column(
-                key: 'id',
-                label: __('Id'),
-                sortable: true
-            )
-            ->column(
-                key: 'user_id',
-                label: __('User id'),
-                sortable: true
-            )
-            ->column(
-                key: 'customer_id',
-                label: __('Customer id'),
-                sortable: true
-            )
-            ->column(
-                key: 'subreddit_id',
-                label: __('Subreddit id'),
-                sortable: true
-            )
-            ->column(
-                key: 'telegram_channel_id',
-                label: __('Telegram channel id'),
-                sortable: true
-            )
-            ->column(
-                key: 'post_type_id',
-                label: __('Post type id'),
+                key: 'local_media_file',
+                label: __('Local media file'),
                 sortable: true
             )
             ->column(
@@ -100,20 +76,67 @@ class PostTable extends AbstractTable
             ->column(
                 key: 'description',
                 label: __('Description'),
-                sortable: true
+                sortable: true,
             )
+            ->column(
+                key: 'subreddit.name',
+                label: __('Subreddit'),
+                sortable: true,
+
+            )
+            ->column(
+                key: 'id',
+                label: __('Id'),
+                sortable: true,
+                hidden:true
+            )
+            ->column(
+                key: 'user_id',
+                label: __('User id'),
+                sortable: true,
+                hidden:true
+            )
+            ->column(
+                key: 'customer_id',
+                label: __('Customer id'),
+                sortable: true,
+                hidden:true
+            )
+            ->column(
+                key: 'subreddit_id',
+                label: __('Subreddit id'),
+                sortable: true,
+                hidden:true
+            )
+            ->column(
+                key: 'telegram_channel_id',
+                label: __('Telegram channel id'),
+                sortable: true,
+                hidden:true
+            )
+            ->column(
+                key: 'post_type_id',
+                label: __('Post type id'),
+                sortable: true,
+                hidden:true
+            )
+
             ->column(
                 key: 'link',
                 label: __('Link'),
-                sortable: true
+                sortable: true,
+                hidden:true
             )
-            ->column(
-                key: 'local_media_file',
-                label: __('Local media file'),
-                sortable: true
-            )
+   
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->export()
+            ->selectFilter(
+                key: 'customer_id',
+                options: Customer::myCustomers()->pluck('fullname', 'id')->toArray(),
+                label: 'Customer',
+                noFilterOption: true,
+                noFilterOptionLabel: 'All Customers'
+            )
             ->paginate(10);
     }
 }

@@ -36,6 +36,13 @@ class EventController extends Controller
         );
     }
 
+    public function schedules(Request $request): View|JsonResponse
+    {
+        // $query = ['user_id' => auth()->user()->id];
+
+        return view('admin.events.schedule');
+    }
+
     /**
      * @param Request $request
      * @return JsonResponse

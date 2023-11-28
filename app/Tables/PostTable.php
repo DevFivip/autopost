@@ -81,8 +81,7 @@ class PostTable extends AbstractTable
             ->column(
                 key: 'subreddit.name',
                 label: __('Subreddit'),
-                sortable: true,
-
+                sortable: true
             )
             ->column(
                 key: 'id',

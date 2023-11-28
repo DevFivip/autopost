@@ -3,6 +3,9 @@
         {{ __('Event') }}
     </x-slot:header>
     <x-slot:buttons>
+        <x-tomato-admin-button :href="route('admin.events.schedules')" type="link">
+            {{ __('📅 Schedules') }}
+        </x-tomato-admin-button>
         <x-tomato-admin-button :modal="true" :href="route('admin.events.create')" type="link">
             {{ trans('tomato-admin::global.crud.create-new') }} {{ __('Event') }}
         </x-tomato-admin-button>

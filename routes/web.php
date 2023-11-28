@@ -77,6 +77,7 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
 
 Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/events', [App\Http\Controllers\Admin\EventController::class, 'index'])->name('events.index');
+    Route::get('admin/events/schedules', [App\Http\Controllers\Admin\EventController::class, 'schedules'])->name('events.schedules');
     Route::get('admin/events/api', [App\Http\Controllers\Admin\EventController::class, 'api'])->name('events.api');
     Route::get('admin/events/create', [App\Http\Controllers\Admin\EventController::class, 'create'])->name('events.create');
     Route::post('admin/events', [App\Http\Controllers\Admin\EventController::class, 'store'])->name('events.store');

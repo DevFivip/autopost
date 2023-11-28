@@ -37,7 +37,6 @@ class UtilController extends Controller
             ->where('posted_at', '<=', $fechaFin)
             ->whereNull('post_id')
             // ->join('posts', 'events.post_id', '=', 'posts.id')
-            ->join('customers', 'events.customer_id', '=', 'customers.id')
             ->join('subreddits', 'events.subreddit_id', '=', 'subreddits.id')
             ->select('events.*', 'subreddits.*')
             ->get();

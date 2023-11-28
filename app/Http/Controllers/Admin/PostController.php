@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -91,11 +92,24 @@ class PostController extends Controller
                 'posted_at' => $schedule['posted_at'],
             ]);
 
-            // if(!!$schedule['subreddit_id']){
+            if (!!$schedule['subreddit_id']) {
 
-            // }
+                $_fecha = explode(" ", $post->posted_at);
+                $fecha = $_fecha[0];
 
 
+                $event = Event::where('user_id', $post->user_id)
+                    ->where('subreddit_id', $post->subreddit_id)
+                    ->where('customer_id', $post->customer_id)
+                    ->where('posted_at', '>', $fecha . ' 00:00:00')
+                    ->where('posted_at', '<', $fecha . ' 23:59:00')
+                    ->first();
+
+                if ($event) {
+                    $event->post_id = $post->id;
+                    $event->save();
+                }
+            }
         }
         // return response()->json($data);
 
@@ -171,6 +185,16 @@ class PostController extends Controller
      */
     public function destroy(\App\Models\Post $model): RedirectResponse|JsonResponse
     {
+        
+        $event = Event::where('post_id', $model->id)->first();
+
+        if ($event) {
+            $event->post_id = null;
+            $event->save();
+        }
+
+
+
         $response = Tomato::destroy(
             model: $model,
             message: __('Post deleted successfully'),

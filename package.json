@@ -26,6 +26,7 @@
         "@fullcalendar/interaction": "^6.1.9",
         "@fullcalendar/timegrid": "^6.1.9",
         "@fullcalendar/vue3": "^6.1.9",
+        "@headlessui/vue": "^1.7.16",
         "@suadelabs/vue3-multiselect": "^1.0.2",
         "@tailwindcss/line-clamp": "^0.4.2",
         "boxicons": "^2.1.4",
@@ -36,6 +37,7 @@
         "tailwindcss-rtl": "^0.9.0",
         "tippy.js": "^6.3.7",
         "vue-draggable-next": "^2.2.1",
+        "vue-final-modal": "^4.4.6",
         "vue3-editor": "^0.1.1",
         "vue3-swatches": "^1.2.3",
         "vue3-tel-input": "^1.0.4"

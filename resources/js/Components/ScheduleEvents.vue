@@ -3,10 +3,15 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
+// import EventModal from './EventModal.vue'
+import { ModalsContainer, useModal } from 'vue-final-modal'
+import ModalEvents from './ModalEvents.vue'
+
 
 export default {
   components: {
-    FullCalendar // make the <FullCalendar> tag available
+    FullCalendar, // make the <FullCalendar> tag available
+    ModalEvents
   },
   data() {
     return {
@@ -59,8 +64,12 @@ export default {
   },
 }
 </script>
+
 <template>
   <button @click="toggleWeekends">toggle weekends</button>
+
+  <ModalEvents />
+
   <FullCalendar :options="calendarOptions">
     <template v-slot:eventContent='arg'>
       <!-- <pre>{{ JSON.stringify(arg) }}</pre> -->
@@ -68,4 +77,5 @@ export default {
       <i>{{ arg.event.title }}</i> -->
     </template>
   </FullCalendar>
+  <ModalsContainer />
 </template>

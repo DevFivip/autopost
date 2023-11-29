@@ -19,7 +19,11 @@ import TomatoCode from "../../vendor/tomatophp/tomato-admin/resources/js/compone
 import TomatoDraggable from "../../vendor/tomatophp/tomato-admin/resources/js/components/TomatoDraggable.vue";
 
 import ScheduleEvents from "../js/Components/ScheduleEvents.vue";
+// import EventModal from "../js/Components/EventModal.vue";
+import { createVfm } from 'vue-final-modal'
+import 'vue-final-modal/style.css'
 
+const vfm = createVfm();
 createApp({
     render: renderSpladeApp({ el }),
     mounted() {
@@ -36,7 +40,7 @@ createApp({
             });
         });
     }
-})
+}).use(vfm)
     .use(SpladePlugin, {
         max_keep_alive: 10,
         transform_anchors: false,
@@ -51,4 +55,5 @@ createApp({
     .component("TomatoArtisan", TomatoArtisan)
     .component("TomatoCode", TomatoCode)
     .component("ScheduleEvents", ScheduleEvents)
+    // .component("EventModal", EventModal)
     .mount(el);

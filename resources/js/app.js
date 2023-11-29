@@ -18,6 +18,8 @@ import TomatoArtisan from "../../vendor/tomatophp/tomato-admin/resources/js/comp
 import TomatoCode from "../../vendor/tomatophp/tomato-admin/resources/js/components/TomatoCode.vue";
 import TomatoDraggable from "../../vendor/tomatophp/tomato-admin/resources/js/components/TomatoDraggable.vue";
 
+import ScheduleEvents from "../js/Components/ScheduleEvents.vue";
+
 createApp({
     render: renderSpladeApp({ el }),
     mounted() {
@@ -48,4 +50,5 @@ createApp({
     .component("TomatoSelect", TomatoSelect)
     .component("TomatoArtisan", TomatoArtisan)
     .component("TomatoCode", TomatoCode)
+    .component("ScheduleEvents", ScheduleEvents)
     .mount(el);

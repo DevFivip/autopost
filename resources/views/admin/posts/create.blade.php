@@ -2,7 +2,7 @@
 
     <x-splade-form class="" action="{{ route('admin.posts.store') }}" method="post" {{-- :default="['user_id' => auth()->user()->id, 'status' => true, 'post_type_id' => 3]"> --}}
         :default="array_merge(
-            ['user_id' => auth()->user()->id, 'status' => true, 'post_type_id' => 3, 'nsfw' => 1],
+            ['user_id' => auth()->user()->id, 'status' => 1, 'post_type_id' => 3, 'nsfw' => 1],
             [
                 'submition_schedule' => [],
             ],

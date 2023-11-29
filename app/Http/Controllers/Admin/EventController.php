@@ -49,10 +49,50 @@ class EventController extends Controller
      */
     public function api(Request $request): JsonResponse
     {
-        return Tomato::json(
-            request: $request,
-            model: \App\Models\Event::class,
-        );
+        $data = $request->all();
+
+        $_fechaStart = explode("T", $data['start']);
+        $_fechaEnd = explode("T", $data['end']);
+
+
+        $events = Event::where('user_id',  $data['user_id'])
+            ->with(['post', 'customer', 'subreddit'])
+            ->where('posted_at', '>', $_fechaStart[0] . ' 00:00:00')
+            ->where('posted_at', '<', $_fechaEnd[0] . ' 00:00:00')->get();
+
+        $e = $events->map(function ($event) {
+            // error_log($event->subreddit->name);
+            $i = (object)[];
+            $i->title = $event->subreddit->name . " " . $event->customer->fullname . " [" . $event->subreddit->tags . "]";
+         
+            if ($event->post == null) {
+                $i->color = "blue";
+                $i->start = $event->posted_at;
+            } else {
+                switch ($event->post->status) {
+                    case 1:
+                        $i->color = "orange";
+                        break;
+                    case 2:
+                        $i->color = "green";
+                        break;
+                    case 0:
+                        $i->color = "red";
+                        break;
+                    default:
+                        $i->color = "black";
+                        break;
+                }
+                $i->post_id = $event->post->id;
+                $i->start = $event->post->posted_at;
+            }
+
+
+            return $i;
+        });
+
+
+        return response()->json($e);
     }
 
     /**

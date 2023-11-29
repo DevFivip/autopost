@@ -1,4 +1,3 @@
-
 <x-tomato-admin-layout>
     <x-slot:header>
         {{ __('Event') }}
@@ -11,23 +10,12 @@
             {{ trans('tomato-admin::global.crud.create-new') }} {{ __('Event') }}
         </x-tomato-admin-button>
     </x-slot:buttons>
-    
+
     <div class="pb-12">
         <div class="mx-auto">
-            <div id='calendar'></div>
+
+            <ScheduleEvents :userId="{{auth()->user()->id}}" />
+
         </div>
     </div>
-
-   <x-splade-script>
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
-
-   </x-splade-script>
-
 </x-tomato-admin-layout>

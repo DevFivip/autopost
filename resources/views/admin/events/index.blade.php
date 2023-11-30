@@ -3,6 +3,9 @@
         {{ __('Event') }}
     </x-slot:header>
     <x-slot:buttons>
+        <x-tomato-admin-button modal :href="route('admin.events.monthlyschedules')" type="link">
+            {{ __('📅 Make a Post Schedule') }}
+        </x-tomato-admin-button>
         <x-tomato-admin-button :href="route('admin.events.schedules')" type="link">
             {{ __('📅 Schedules') }}
         </x-tomato-admin-button>

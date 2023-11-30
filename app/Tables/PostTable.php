@@ -126,6 +126,11 @@ class PostTable extends AbstractTable
                 sortable: true,
                 hidden:true
             )
+            ->column(
+                key: 'status',
+                label: __('Status'),
+                sortable: true,
+            )
    
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->export()

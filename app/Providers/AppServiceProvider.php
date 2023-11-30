@@ -28,49 +28,51 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         TomatoMenu::groups([
+            __('App') => true,
+            __('Subreddits and Channels') => true,
             __('ALC') => true,
             __('Settings') => false,
-            __('Resources') => true,
         ]);
 
         // $user = auth()->user();
         // dd($user);
         TomatoMenu::register([
             Menu::make()
-                ->group('Resources')
+                ->group('App')
+                ->label('Posts')
+                ->route('admin.posts.index')
+                ->icon('bx bx-timer'),
+            Menu::make()
+                ->group('App')
                 ->label('Customers')
                 ->route('admin.customers.index')
                 ->icon('bx bx-user'),
             Menu::make()
-                ->group('Resources')
-                ->label('Subreddits')
-                ->route('admin.subreddits.index')
-                ->icon('bx bx-user'),
-            Menu::make()
-                ->group('Resources')
-                ->label('Assign Subreddits to Customers')
-                ->route('admin.customer-subreddits.index')
-                ->icon('bx bx-user'),
-            Menu::make()
-                ->group('Resources')
+                ->group('App')
                 ->label('Upcoming Posts')
                 ->route('admin.events.index')
                 ->icon('bx bx-calendar'),
             Menu::make()
-                ->group('Resources')
+                ->group('App')
                 ->label('Content Library')
                 ->route('admin.images.index')
-                ->icon('bx bx-images'),
+                ->icon('bx bx-photo-album '),
             Menu::make()
-                ->group('Resources')
+                ->group('Subreddits and Channels')
                 ->label('Telegram Channels')
                 ->route('admin.telegram-channels.index')
-                ->icon('bx bx-telegram'),
+                ->icon('bx bxl-telegram'),
             Menu::make()
-                ->group('Resources')
-                ->label('Posts')
-                ->route('admin.posts.index')
-                ->icon('bx bx-post'),
+                ->group('Subreddits and Channels')
+                ->label('Subreddits')
+                ->route('admin.subreddits.index')
+                ->icon('bx bxl-reddit'),
+            Menu::make()
+                ->group('Subreddits and Channels')
+                ->label('Assign Subreddits to Customers')
+                ->route('admin.customer-subreddits.index')
+                ->icon('bx bxl-reddit'),
+
         ]);
     }
 }

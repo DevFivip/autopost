@@ -8,8 +8,9 @@
             ],
         )">
 
-        <div class="grid grid-flow-row-dense grid-cols-2 grid-rows-2">
-            <div class="col-span-3">
+        <div class="flex justify-between">
+
+            <div class="" style="min-width:100vh;">
                 <div class="flex flex-wrap gap-6">
                     <div class="flex items-center me-4">
                         <x-splade-radio name="post_type_id" value="1" label="Post" :show-errors="true" />
@@ -101,7 +102,7 @@
             {{-- BUSCADOR DE MEDIA FILES --}}
 
 
-            <div class="col-span-2">
+            <div class="" style="min-width:50vh;">
                 <h1 class="text-2xl font-bold tracking-tight md:text-2xl filament-header-heading mb-2">Schedule
                     Submitions</h1>
                 <div style="max-width: 75vh;" class="mt-6">

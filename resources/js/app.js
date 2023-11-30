@@ -18,6 +18,8 @@ import TomatoArtisan from "../../vendor/tomatophp/tomato-admin/resources/js/comp
 import TomatoCode from "../../vendor/tomatophp/tomato-admin/resources/js/components/TomatoCode.vue";
 import TomatoDraggable from "../../vendor/tomatophp/tomato-admin/resources/js/components/TomatoDraggable.vue";
 
+import store from "./store/store";
+
 import ScheduleEvents from "../js/Components/ScheduleEvents.vue";
 // import EventModal from "../js/Components/EventModal.vue";
 import { createVfm } from 'vue-final-modal'
@@ -40,7 +42,7 @@ createApp({
             });
         });
     }
-}).use(vfm)
+}).use(vfm).use(store)
     .use(SpladePlugin, {
         max_keep_alive: 10,
         transform_anchors: false,

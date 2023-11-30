@@ -61,25 +61,34 @@ class EventController extends Controller
             ->where('posted_at', '<', $_fechaEnd[0] . ' 00:00:00')->get();
 
         $e = $events->map(function ($event) {
-            // error_log($event->subreddit->name);
+            
             $i = (object)[];
-            $i->title = $event->subreddit->name . " " . $event->customer->fullname . " [" . $event->subreddit->tags . "]";
-         
+            $i->event_id = $event->id;
+            $i->title = $event->subreddit->name ;
+            $i->customer = $event->customer->fullname;
+            $i->customer_id = $event->customer->id;
+            $i->tags = $event->subreddit->tags;
+            $i->status = "🕑";
             if ($event->post == null) {
+                $i->status = "🕑";
                 $i->color = "blue";
                 $i->start = $event->posted_at;
             } else {
                 switch ($event->post->status) {
                     case 1:
+                        $i->status = "📮";
                         $i->color = "orange";
                         break;
                     case 2:
+                        $i->status = "✅";
                         $i->color = "green";
                         break;
                     case 0:
+                        $i->status = "👎";
                         $i->color = "red";
                         break;
                     default:
+                        $i->color = "🤷‍♂️";
                         $i->color = "black";
                         break;
                 }

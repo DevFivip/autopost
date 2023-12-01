@@ -31,7 +31,7 @@ class CustomerSubredditController extends Controller
             model: $this->model,
             view: 'admin.customer-subreddits.index',
             table: \App\Tables\CustomerSubredditTable::class,
-            query: CustomerSubreddit::query()->where('user_id',auth()->user()->id)
+            query: CustomerSubreddit::query()->where('user_id', auth()->user()->id)
         );
     }
 
@@ -63,23 +63,42 @@ class CustomerSubredditController extends Controller
      */
     public function store(Request $request): RedirectResponse|JsonResponse
     {
-        $response = Tomato::store(
-            request: $request,
-            model: \App\Models\CustomerSubreddit::class,
-            validation: [
-                'customer_id' => 'required|exists:customers,id',
-                'subreddit_id' => 'required|exists:subreddits,id',
-                'verification_status' => 'required',
-            ],
-            message: __('CustomerSubreddit updated successfully'),
-            redirect: 'admin.customer-subreddits.index',
-        );
+        $data = $request->all();
 
-        if($response instanceof JsonResponse){
-            return $response;
+        // dd($data);
+        $colection = [];
+
+        foreach ($data['subreddit_id'] as $subreddit_id) {
+            $arr = [
+                'subreddit_id' => $subreddit_id,
+                'customer_id' => $data['customer_id'],
+                'user_id' => auth()->user()->id,
+                'verification_status' => 1,
+            ];
+            array_push($colection, $arr);
         }
 
-        return $response->redirect;
+        $assigns = CustomerSubreddit::insert($colection);
+
+        return to_route('admin.customer-subreddits.index');
+
+        // $response = Tomato::store(
+        //     request: $request,
+        //     model: \App\Models\CustomerSubreddit::class,
+        //     validation: [
+        //         'customer_id' => 'required|exists:customers,id',
+        //         'subreddit_id' => 'required|exists:subreddits,id',
+        //         'verification_status' => 'required',
+        //     ],
+        //     message: __('CustomerSubreddit updated successfully'),
+        //     redirect: 'admin.customer-subreddits.index',
+        // );
+
+        // if ($response instanceof JsonResponse) {
+        //     return $response;
+        // }
+
+        // return $response->redirect;
     }
 
     /**
@@ -125,11 +144,11 @@ class CustomerSubredditController extends Controller
             redirect: 'admin.customer-subreddits.index',
         );
 
-         if($response instanceof JsonResponse){
-             return $response;
-         }
+        if ($response instanceof JsonResponse) {
+            return $response;
+        }
 
-         return $response->redirect;
+        return $response->redirect;
     }
 
     /**
@@ -144,7 +163,7 @@ class CustomerSubredditController extends Controller
             redirect: 'admin.customer-subreddits.index',
         );
 
-        if($response instanceof JsonResponse){
+        if ($response instanceof JsonResponse) {
             return $response;
         }
 

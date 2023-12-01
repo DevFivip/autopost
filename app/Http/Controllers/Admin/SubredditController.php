@@ -64,7 +64,7 @@ class SubredditController extends Controller
             request: $request,
             model: \App\Models\Subreddit::class,
             validation: [
-                            'name' => 'required|max:255|string',
+            'name' => 'required|max:255|string',
             'tags' => 'required|max:255|string',
             'verification' => 'required',
             'status' => 'required'

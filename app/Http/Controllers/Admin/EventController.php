@@ -65,8 +65,25 @@ class EventController extends Controller
         $e = $events->map(function ($event) {
 
             $i = (object)[];
+
+            $fecha = new DateTime($event->updated_at);
+            // Fecha y hora actuales
+            $fechaActual = new DateTime();
+            // error_log(json_encode($event));
+            // error_log(json_encode($fechaActual));
+
+            // Diferencia en minutos entre las dos fechas
+            $intervalo = $fechaActual->diff($fecha);
+            $minutosDiferencia = $intervalo->i;
+            $isnew = "";
+            // Verificar si la diferencia es menor a 5 minutos
+            if ($minutosDiferencia < 3) {
+                $isnew = "🔥";
+            }
+            // error_log($minutosDiferencia);
+
             $i->event_id = $event->id;
-            $i->title = $event->subreddit->name;
+            $i->title = $event->subreddit->name . " " . $isnew;
             $i->customer = $event->customer->fullname;
             $i->customer_id = $event->customer->id;
             $i->tags = $event->subreddit->tags;
@@ -258,7 +275,7 @@ class EventController extends Controller
         $fechaFin = $fecha_fin;
 
         $res = [];
-
+        $datetime = new DateTime();
         // Generar lista de subreddits para cada día
         while ($fechaInicio <= $fechaFin) {
             $fechaActual = $fechaInicio->format('Y-m-d');
@@ -267,7 +284,7 @@ class EventController extends Controller
             // echo "Para el día $fechaActual, come las siguientes subreddits: " . implode(", ", $subredditDia) . "\n";
 
             foreach ($subredditDia as $subreddit) {
-                $arr = ["posted_at" => $fechaActual, "subreddit_id" => $subreddit, 'user_id' => $user_id, 'customer_id' => $customer_id, 'status' => 1];
+                $arr = ["created_at" => $datetime, "updated_at" => $datetime, "posted_at" => $fechaActual, "subreddit_id" => $subreddit, 'user_id' => $user_id, 'customer_id' => $customer_id, 'status' => 1];
                 error_log($subreddit);
                 array_push($res, $arr);
             }

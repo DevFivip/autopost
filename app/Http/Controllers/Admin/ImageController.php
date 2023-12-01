@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
@@ -25,11 +26,15 @@ class ImageController extends Controller
      */
     public function index(Request $request): View|JsonResponse
     {
+        $query = ['user_id' => auth()->user()->id];
+        $customersId = Customer::where('user_id', auth()->user()->id)->get()->pluck('id')->toArray();
+        error_log(json_encode($customersId));
         return Tomato::index(
             request: $request,
             model: $this->model,
             view: 'admin.images.index',
-            table: \App\Tables\ImageTable::class
+            table: \App\Tables\ImageTable::class,
+            query: Image::query()->whereIn("customer_id", $customersId),
         );
     }
 
@@ -79,7 +84,7 @@ class ImageController extends Controller
     {
         $request->validate([
             'customer_id' => 'required|exists:customers,id',
-            'mediafiles.*' => 'required|file|mimes:jpeg,png,gif,webp,mp4,avi,mov,wmv|max:20480',
+            'mediafiles.*' => 'required|file|mimes:jpeg,png,gif,webp,mp4,avi,mov,wmv|max:50480',
         ]);
 
         foreach ($request->file('mediafiles') as $archivo) {

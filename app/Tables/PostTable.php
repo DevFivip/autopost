@@ -69,6 +69,11 @@ class PostTable extends AbstractTable
                 sortable: true
             )
             ->column(
+                key: 'posted_at',
+                label: __('Schedule'),
+                sortable: true
+            )
+            ->column(
                 key: 'title',
                 label: __('Title'),
                 sortable: true

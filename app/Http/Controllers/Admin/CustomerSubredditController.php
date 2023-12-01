@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CustomerSubreddit;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class CustomerSubredditController extends Controller
             request: $request,
             model: $this->model,
             view: 'admin.customer-subreddits.index',
-            table: \App\Tables\CustomerSubredditTable::class
+            table: \App\Tables\CustomerSubredditTable::class,
+            query: CustomerSubreddit::query()->where('user_id',auth()->user()->id)
         );
     }
 

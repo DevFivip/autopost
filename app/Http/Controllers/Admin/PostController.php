@@ -30,7 +30,8 @@ class PostController extends Controller
             request: $request,
             model: $this->model,
             view: 'admin.posts.index',
-            table: \App\Tables\PostTable::class
+            table: \App\Tables\PostTable::class,
+            query: Post::query()->where('user_id',auth()->user()->id)
         );
     }
 
@@ -90,6 +91,7 @@ class PostController extends Controller
                 'telegram_channel_id' => $schedule['telegram_channel_id'] ?? null,
                 'post_type_id' => $data['post_type_id'],
                 'posted_at' => $schedule['posted_at'],
+                'status' => 1,
             ]);
 
             if (!!$schedule['subreddit_id']) {
@@ -97,12 +99,16 @@ class PostController extends Controller
                 $_fecha = explode(" ", $post->posted_at);
                 $fecha = $_fecha[0];
 
+                error_log($post->user_id);
+                error_log($post->subreddit_id);
+                error_log($post->customer_id);
+                error_log($fecha);
 
                 $event = Event::where('user_id', $post->user_id)
                     ->where('subreddit_id', $post->subreddit_id)
                     ->where('customer_id', $post->customer_id)
-                    ->where('posted_at', '>', $fecha . ' 00:00:00')
-                    ->where('posted_at', '<', $fecha . ' 23:59:00')
+                    ->where('posted_at', '=', $fecha)
+                    // ->where('posted_at', '<', $fecha . ' 23:59:00')
                     ->first();
 
                 if ($event) {
@@ -185,7 +191,7 @@ class PostController extends Controller
      */
     public function destroy(\App\Models\Post $model): RedirectResponse|JsonResponse
     {
-        
+
         $event = Event::where('post_id', $model->id)->first();
 
         if ($event) {

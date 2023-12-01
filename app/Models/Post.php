@@ -29,7 +29,7 @@ class Post extends Model
     /**
      * @var array
      */
-    protected $fillable = ['user_id', 'customer_id', 'subreddit_id', 'telegram_channel_id', 'post_type_id', 'title', 'description', 'link', 'local_media_file', 'posted_at', 'created_at', 'updated_at'];
+    protected $fillable = ['user_id', 'customer_id', 'subreddit_id', 'telegram_channel_id', 'post_type_id', 'title', 'description', 'link', 'local_media_file', 'posted_at', 'created_at', 'updated_at','status'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -41,9 +41,18 @@ class CustomerSubredditController extends Controller
      */
     public function api(Request $request): JsonResponse
     {
+        $data = $request->all();
+        // $where = [];
+
+        if (isset($data['notin'])) {
+            $subreddits = CustomerSubreddit::where('customer_id', $data['customer_id'])->get();
+            $query = CustomerSubreddit::query()->where('user_id', auth()->user()->id)->whereNotIn('subreddit_id', $subreddits);
+        }
+
         return Tomato::json(
             request: $request,
             model: \App\Models\CustomerSubreddit::class,
+            query: $query
         );
     }
 

@@ -1,0 +1,109 @@
+{
+  "_choices-c3d2ca21.js": {
+    "file": "assets/choices-c3d2ca21.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "_nprogress-74cf1b7b.js": {
+    "file": "assets/nprogress-74cf1b7b.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true
+  },
+  "node_modules/autosize/dist/autosize.esm.js": {
+    "file": "assets/autosize.esm-32e303a0.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/autosize/dist/autosize.esm.js"
+  },
+  "node_modules/boxicons/fonts/boxicons.eot": {
+    "file": "assets/boxicons-c23887bb.eot",
+    "src": "node_modules/boxicons/fonts/boxicons.eot"
+  },
+  "node_modules/boxicons/fonts/boxicons.svg": {
+    "file": "assets/boxicons-3fe502d8.svg",
+    "src": "node_modules/boxicons/fonts/boxicons.svg"
+  },
+  "node_modules/boxicons/fonts/boxicons.ttf": {
+    "file": "assets/boxicons-47509a2d.ttf",
+    "src": "node_modules/boxicons/fonts/boxicons.ttf"
+  },
+  "node_modules/boxicons/fonts/boxicons.woff": {
+    "file": "assets/boxicons-d5d511cf.woff",
+    "src": "node_modules/boxicons/fonts/boxicons.woff"
+  },
+  "node_modules/boxicons/fonts/boxicons.woff2": {
+    "file": "assets/boxicons-4b87cbc7.woff2",
+    "src": "node_modules/boxicons/fonts/boxicons.woff2"
+  },
+  "node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.esm.js": {
+    "file": "assets/filepond-plugin-file-validate-size.esm-cc68c999.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.esm.js"
+  },
+  "node_modules/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js": {
+    "file": "assets/filepond-plugin-file-validate-type.esm-54b3a46f.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js"
+  },
+  "node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.esm.js": {
+    "file": "assets/filepond-plugin-image-exif-orientation.esm-a30467e6.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.esm.js"
+  },
+  "node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js": {
+    "file": "assets/filepond-plugin-image-preview.esm-b8cee188.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js"
+  },
+  "node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.esm.js": {
+    "file": "assets/filepond-plugin-image-validate-size.esm-337c4814.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.esm.js"
+  },
+  "node_modules/filepond/dist/filepond.esm.js": {
+    "file": "assets/filepond.esm-54e39f90.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/filepond/dist/filepond.esm.js"
+  },
+  "node_modules/flatpickr/dist/esm/index.js": {
+    "file": "assets/index-e698212e.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/flatpickr/dist/esm/index.js"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-ee53cdc8.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/boxicons-c23887bb.eot",
+      "assets/boxicons-4b87cbc7.woff2",
+      "assets/boxicons-d5d511cf.woff",
+      "assets/boxicons-47509a2d.ttf",
+      "assets/boxicons-3fe502d8.svg"
+    ],
+    "css": [
+      "assets/app-ee53cdc8.css"
+    ],
+    "dynamicImports": [
+      "node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.esm.js",
+      "node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.esm.js",
+      "node_modules/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.esm.js",
+      "node_modules/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.esm.js",
+      "node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.esm.js",
+      "node_modules/filepond/dist/filepond.esm.js",
+      "node_modules/flatpickr/dist/esm/index.js",
+      "_choices-c3d2ca21.js",
+      "node_modules/autosize/dist/autosize.esm.js",
+      "node_modules/autosize/dist/autosize.esm.js",
+      "node_modules/autosize/dist/autosize.esm.js",
+      "_nprogress-74cf1b7b.js"
+    ],
+    "file": "assets/app-a678480f.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

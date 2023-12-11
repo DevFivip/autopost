@@ -52,7 +52,7 @@
         }
     },
     "scripts": {
-        "clear-database":"rm database/database.sqlite && touch database/database.sqlite",
+        "clear-database":"sudo rm database/database.sqlite && sudo touch database/database.sqlite && sudo chown www-data.www-data database/database.sqlite && sudo chmod 777 database/database.sqlite",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

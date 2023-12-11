@@ -21,6 +21,7 @@ return new class extends Migration
         });
 
         Schema::create('customer_subreddits', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('customer_id')->constrained('customers');
             $table->foreignId('subreddit_id')->constrained('subreddits');
         });

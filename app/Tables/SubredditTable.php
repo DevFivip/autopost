@@ -53,7 +53,7 @@ class SubredditTable extends AbstractTable
         $table
             ->withGlobalSearch(
                 label: trans('tomato-admin::global.search'),
-                columns: ['id','name',]
+                columns: ['id','name','tags']
             )
             ->bulkAction(
                 label: trans('tomato-admin::global.crud.delete'),

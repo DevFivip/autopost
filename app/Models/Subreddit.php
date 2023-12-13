@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 /**
  * @property integer $id
@@ -21,6 +22,15 @@ class Subreddit extends Model
      */
     protected $fillable = ['name', 'tags', 'verification', 'status', 'created_at', 'updated_at'];
     protected $casts = ['verification' => 'boolean', 'status' => 'boolean'];
+
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value, array $attributes) =>  $attributes['name'] . " (" . $attributes['tags'] . ")"
+
+        )->shouldCache();
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

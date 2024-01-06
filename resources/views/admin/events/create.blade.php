@@ -9,5 +9,6 @@
             <x-tomato-admin-submit  label="{{__('Save')}}" :spinner="true" />
             <x-tomato-admin-button secondary :href="route('admin.events.index')" label="{{__('Cancel')}}"/>
         </div>
+        
     </x-splade-form>
 </x-tomato-admin-container>

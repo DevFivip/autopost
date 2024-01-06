@@ -89,9 +89,24 @@ class EventController extends Controller
             $i->tags = $event->subreddit->tags;
             $i->status = "🕑";
             if ($event->post == null) {
-                $i->status = "🕑";
-                $i->color = "blue";
-                $i->start = $event->posted_at;
+                switch ($event->status) {
+                    case 0:
+                            $i->status = "❌";
+                            $i->color = "red";
+                            $i->start = $event->posted_at;
+                        break;
+                    case 1:
+                            $i->status = "🕑";
+                            $i->color = "blue";
+                            $i->start = $event->posted_at;
+                        break;
+                    case 2:
+                            $i->status = "✅";
+                            $i->color = "green";
+                            $i->start = $event->posted_at;
+                        break;
+                }
+
             } else {
                 switch ($event->post->status) {
                     case 1:
